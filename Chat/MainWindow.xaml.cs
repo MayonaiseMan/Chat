@@ -15,6 +15,9 @@ using System.Windows.Shapes;
 using System.Net;
 using System.Net.Sockets;
 using System.Windows.Threading;
+using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Chat
 {
@@ -26,6 +29,7 @@ namespace Chat
         //Oggetti
         Socket socket = null;
         DispatcherTimer dtimer = null;
+        Thread checkChat = null;
         public MainWindow()
         {
             //Inizializzazione oggetti
@@ -46,37 +50,49 @@ namespace Chat
             socket.Blocking = false;
             socket.EnableBroadcast = false;
 
+            /*
             dtimer = new DispatcherTimer();
-
             dtimer.Tick += new EventHandler(aggiornamento_dTimer);
             dtimer.Interval = new TimeSpan(0, 0, 0, 0, 250);
             dtimer.Start();
+            */
 
+            
+
+            CaricaContatti();
             InitializeComponent();
+
+            checkChat = new Thread(new ThreadStart (aggiornamento_chat));
+            checkChat.Start();
         }
 
-        private void aggiornamento_dTimer(object sender, EventArgs e)
+        private void aggiornamento_chat()
         {
-            
-            if(socket.Available > 0)
+            while (true)
             {
-                byte[] buffer = new byte[socket.Available];
+                if (socket.Available > 0)
+                {
+                    byte[] buffer = new byte[socket.Available];
 
-                EndPoint remoteEp = new IPEndPoint(IPAddress.Any, 0);
+                    EndPoint remoteEp = new IPEndPoint(IPAddress.Any, 0);
 
-                int lenght = socket.ReceiveFrom(buffer, ref remoteEp);
+                    int lenght = socket.ReceiveFrom(buffer, ref remoteEp);
 
-                string from = ((IPEndPoint)remoteEp).Address.ToString();
+                    string from = ((IPEndPoint)remoteEp).Address.ToString();
 
-                string messaggio = Encoding.UTF8.GetString(buffer, 0, lenght);
+                    string messaggio = Encoding.UTF8.GetString(buffer, 0, lenght);
 
-                lst_messaggi.Items.Add(from + " : " + messaggio);
-               
-                
+                    Dispatcher.BeginInvoke(new Action( () => {
+                        lst_messaggi.Items.Add(from + " : " +messaggio);
+                    }));
 
                    
+
+                }
             }
         }
+
+        
 
         private void btn_invia_Click(object sender, RoutedEventArgs e)
         {
@@ -95,10 +111,53 @@ namespace Chat
             
         }
 
-        private void lst_messaggi_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        Agenda agenda = null;
+        private void agenda_txt_Click(object sender, RoutedEventArgs e)
+        {
+            agenda = new Agenda(this, ref contatti);
+            agenda.Show();
+        }
+
+
+        private void lst_messaggi_TargetUpdated(object sender, DataTransferEventArgs e)
         {
             string msg = lst_messaggi.SelectedItem.ToString();
             MessageBox.Show(msg);
         }
+
+
+        public List<Contatto> contatti = new List<Contatto>();
+        private void CaricaContatti()
+        {
+            using (StreamReader reader = new StreamReader("agenda.txt"))
+            {
+                try
+                {
+                    while (reader.EndOfStream == false)
+                    {
+                        string tmp = reader.ReadLine();
+                        string[] vs = tmp.Split('|');
+                        Contatto c = new Contatto(vs[0], vs[1], vs[2]);
+                        contatti.Add(c);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+            }
+        }
+
+
+
+        public void RecuperaContatto(Contatto _contatto)
+        {
+            txt_ip.Text = _contatto.Ip;
+            txt_porta.Text = _contatto.Port;
+            agenda.Close();
+        }
+
     }
+
 }

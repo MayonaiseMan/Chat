@@ -1,0 +1,22 @@
+﻿<Window x:Class="Chat.Agenda"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Chat"
+        mc:Ignorable="d"
+        Title="Agenda" Height="562.357" Width="280.244">
+    <Grid>
+        <ListBox x:Name="contatti_lst" HorizontalAlignment="Left" Height="235" Margin="10,10,0,0" VerticalAlignment="Top" Width="250"/>
+        <Button x:Name="Seleziona_btn" Content="Seleziona" HorizontalAlignment="Left" Margin="10,250,0,0" VerticalAlignment="Top" Width="250" Height="33" Click="Seleziona_btn_Click"/>
+        <TextBox x:Name="nome_txt" HorizontalAlignment="Left" Height="23" Margin="10,325,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="1" Margin="10,291,0,0" Stroke="Black" VerticalAlignment="Top" Width="250"/>
+        <TextBox x:Name="indirizzo_txt" HorizontalAlignment="Left" Height="23" Margin="10,376,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250"/>
+        <TextBox x:Name="porta_txt" HorizontalAlignment="Left" Height="23" Margin="10,427,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250"/>
+        <Label Content="Nome" HorizontalAlignment="Left" Margin="10,297,0,0" VerticalAlignment="Top" Height="28" Width="83"/>
+        <Label Content="Indirizzo Ip" HorizontalAlignment="Left" Margin="10,348,0,0" VerticalAlignment="Top" Height="28" Width="83"/>
+        <Label Content="Porta" HorizontalAlignment="Left" Margin="10,399,0,0" VerticalAlignment="Top" Height="28" Width="83"/>
+        <Button x:Name="add_contatto_btn" Content="Aggiungi Contatto" HorizontalAlignment="Left" Margin="10,455,0,0" VerticalAlignment="Top" Width="250" Height="29" Click="add_contatto_btn_Click"/>
+
+    </Grid>
+</Window>

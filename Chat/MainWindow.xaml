@@ -5,15 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Chat"
         mc:Ignorable="d"
-        Title="MainWindow 64000" Height="454.913" Width="509.17">
+        Title="MainWindow 64000" Height="592.654" Width="530.372">
     <Grid>
-        <ListBox x:Name="lst_messaggi" HorizontalAlignment="Left" Height="399" Margin="10,10,0,0" VerticalAlignment="Top" Width="261" MouseLeftButtonDown="lst_messaggi_MouseLeftButtonDown"/>
-        <TextBox x:Name="txt_ip" HorizontalAlignment="Left" Height="31" Margin="309,93,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="148"/>
-        <Label Content="IP" HorizontalAlignment="Left" Margin="309,69,0,0" VerticalAlignment="Top" Width="148" Height="35"/>
-        <TextBox x:Name="txt_porta" HorizontalAlignment="Left" Height="31" Margin="309,172,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="148"/>
-        <Label Content="Porta" HorizontalAlignment="Left" Margin="309,148,0,0" VerticalAlignment="Top" Width="148" Height="35"/>
-        <TextBox x:Name="txt_messaggio" HorizontalAlignment="Left" Height="31" Margin="309,252,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="148"/>
-        <Label Content="Messaggio" HorizontalAlignment="Left" Margin="309,228,0,0" VerticalAlignment="Top" Width="148" Height="35"/>
-        <Button x:Name="btn_invia" Content="Invia" HorizontalAlignment="Left" Margin="309,299,0,0" VerticalAlignment="Top" Width="148" Height="29" Click="btn_invia_Click"/>
+        <ListBox x:Name="lst_messaggi" HorizontalAlignment="Left" Height="351" Margin="10,10,0,0" VerticalAlignment="Top" Width="504" TargetUpdated="lst_messaggi_TargetUpdated"/>
+        <TextBox x:Name="txt_ip" HorizontalAlignment="Left" Height="31" Margin="10,414,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="245" RenderTransformOrigin="-1.356,11.717"/>
+        <Label Content="IP" HorizontalAlignment="Left" Margin="10,379,0,0" VerticalAlignment="Top" Width="148" Height="35"/>
+        <TextBox x:Name="txt_porta" HorizontalAlignment="Left" Height="31" Margin="269,414,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="245"/>
+        <Label Content="Porta" HorizontalAlignment="Left" Margin="269,379,0,0" VerticalAlignment="Top" Width="148" Height="35"/>
+        <TextBox x:Name="txt_messaggio" HorizontalAlignment="Left" Height="31" Margin="10,490,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="245"/>
+        <Label Content="Messaggio" HorizontalAlignment="Left" Margin="10,450,0,0" VerticalAlignment="Top" Width="245" Height="35"/>
+        <Button x:Name="btn_invia" Content="Invia" HorizontalAlignment="Left" Margin="269,492,0,0" VerticalAlignment="Top" Width="120" Height="29" Click="btn_invia_Click"/>
+        <Button x:Name="agenda_txt" Content="Agenda" HorizontalAlignment="Left" Margin="394,492,0,0" VerticalAlignment="Top" Width="120" Height="29" Click="agenda_txt_Click"/>
     </Grid>
 </Window>
