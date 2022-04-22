@@ -8,7 +8,8 @@ namespace Chat
 {
     public class Contatto
     {
-
+        //la classe rappresenta i contatti di un agenda, composti da nome, indirizzo ip e porta che usano per la chat.
+        //ho dei campi privati accessibili attraverso delle proprtità che in modalità set, fanno dei controlli sulla stringa che ricevono.
         public Contatto(string nome, string ip, string porta)
         {
             Nome = nome;
